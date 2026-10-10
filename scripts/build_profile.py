@@ -4,8 +4,9 @@ The hero is a fake "profile.sh --live" terminal: a particle cloud on the left
 morphs between shapes (portrait -> ring -> </> -> initials) and a SYSTEM.INFO
 panel on the right boots up line by line. All data lives in profile.config.json.
 
-Drop a photo at assets/portrait.png (or .jpg) to use your own face as the first
-particle shape; otherwise a hooded cyber-operator silhouette is drawn.
+assets/portrait.png is a grayscale density map of your face (white = more
+particles) used as the first shape; without it a hooded cyber-operator
+silhouette is drawn instead.
 
     python scripts/build_profile.py
 """
@@ -107,12 +108,9 @@ def shape_operator():
 
 
 def shape_portrait(path):
-    img = Image.open(path).convert("L")
-    img = ImageOps.fit(img, (CW, CH), centering=(0.5, 0.35))
-    img = ImageOps.autocontrast(img, cutoff=2)
-    base = np.asarray(img, dtype=float) / 255
-    edges = np.asarray(img.filter(ImageFilter.FIND_EDGES).filter(ImageFilter.MaxFilter(3)), dtype=float) / 255
-    return np.clip(base ** 1.6 * 0.8 + edges * 1.2, 0, 1)
+    """assets/portrait.png is a pre-processed density map: white = more particles."""
+    img = ImageOps.pad(Image.open(path).convert("L"), (CW, CH), color=0, centering=(0.5, 1))
+    return np.asarray(img, dtype=float) / 255
 
 
 def shape_ring():
@@ -140,16 +138,48 @@ def shape_text(text, size, mono=True):
     return emphasize_edges(img, fill_weight=0.3)
 
 
+def dither(prob):
+    """Floyd-Steinberg error diffusion -> boolean 1-bit image."""
+    h, w = prob.shape
+    buf = prob.copy()
+    out = np.zeros_like(buf, dtype=bool)
+    for y in range(h):
+        row, nxt = buf[y], buf[y + 1] if y + 1 < h else None
+        for x in range(w):
+            on = row[x] >= 0.5
+            out[y, x] = on
+            err = row[x] - on
+            if x + 1 < w:
+                row[x + 1] += err * 7 / 16
+            if nxt is not None:
+                if x:
+                    nxt[x - 1] += err * 3 / 16
+                nxt[x] += err * 5 / 16
+                if x + 1 < w:
+                    nxt[x + 1] += err * 1 / 16
+    return out
+
+
 def sample(prob, n):
-    p = prob.ravel() ** 1.3
-    p = p / p.sum()
-    idx = rng.choice(p.size, size=n, replace=False, p=p)
-    ys, xs = np.divmod(idx, CW)
-    pts = np.stack([xs, ys], axis=1).astype(float) + rng.uniform(-0.5, 0.5, (n, 2))
+    """Dither the shape at half resolution (the "300x240 / 1-BIT" grid) so the
+    dots read like a printed photo, scaling ink until ~n dots are lit."""
+    small = np.asarray(Image.fromarray((prob * 255).astype(np.uint8)).resize((CW // 2, CH // 2), Image.LANCZOS), dtype=float) / 255
+    lo, hi = 0.0, 8.0
+    for _ in range(14):
+        k = (lo + hi) / 2
+        count = dither(np.clip(small * k, 0, 1)).sum()
+        lo, hi = (k, hi) if count < n else (lo, k)
+    on = dither(np.clip(small * hi, 0, 1))
+    ys, xs = np.nonzero(on)
+    pts = np.stack([xs * 2 + 1, ys * 2 + 1], axis=1)
+    if len(pts) > n:
+        pts = pts[np.sort(rng.choice(len(pts), n, replace=False))]
+    elif len(pts) < n:
+        pts = np.concatenate([pts, pts[rng.choice(len(pts), n - len(pts))]])
     # Order by angle around the centre so particles swirl between shapes
     # instead of crossing the whole canvas at random.
     ang = np.arctan2(pts[:, 1] - CH / 2, pts[:, 0] - CW / 2)
-    return np.rint(pts[np.argsort(ang)]).astype(int)
+    return pts[np.argsort(ang, kind="stable")]
 
 
 # ------------------------------------------------------------------ hero ---
@@ -183,7 +213,7 @@ def morph_layer(m):
 
     # Split particles into colour groups; each group is ONE path whose "d"
     # morphs, which keeps the file small and cheap for the browser.
-    groups = rng.choice(3, size=n, p=[0.72, 0.2, 0.08])
+    groups = rng.choice(3, size=n, p=[0.8, 0.12, 0.08])
     colors = [C["cyan"], C["magenta"], C["text"]]
     out = []
     for g, col in enumerate(colors):
@@ -229,7 +259,7 @@ def build_hero():
         rows.append(
             f'<g class="row" style="animation-delay:{delay:.2f}s">'
             f'<text x="{rx + 16}" y="{y:.1f}" class="lbl">{escape(k)}</text>'
-            f'<text x="{rx + rw - 16}" y="{y:.1f}" class="val" text-anchor="end">{escape(v)}</text></g>'
+            f'<text x="{rx + rw - 16}" y="{y:.1f}" class="val{" grid" if k.startswith("Grid.") else ""}" text-anchor="end">{escape(v)}</text></g>'
         )
 
     user_pill_w = 16 + len(user) * 7.2
@@ -250,6 +280,7 @@ def build_hero():
     .meta{{font-size:9.5px;fill:{C["dim"]};letter-spacing:.8px}}
     .lbl{{font-size:11.5px;fill:{C["label"]}}}
     .val{{font-size:11.5px;fill:{C["text"]};font-weight:600}}
+    .grid{{fill:{C["green"]}}}
     .mode text{{font-size:9.5px;fill:{C["magenta"]};letter-spacing:1px}}
     .row{{opacity:0;animation:boot .45s ease-out forwards}}
     .live{{animation:blink 1.1s steps(1) infinite}}
