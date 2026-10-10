@@ -3,7 +3,7 @@
 <img src="./assets/hero.svg" width="100%" alt="profile.sh — live :: Jordy Martel"/>
 
 <a href="https://github.com/jordymartel-hash">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&pause=1400&color=E6F1FF&center=true&vCenter=true&width=760&lines=Architecture+of+Code+%2F+Python+%2F+Cyber;Building+here+since+Forever;Jordy+-+Developer+%26+Netrunner" alt="Typing SVG"/>
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&pause=1400&color=E6F1FF&center=true&vCenter=true&width=760&lines=Architecture+of+Code+%2F+Python+%2F+Kotlin;Building+here+since+Forever;Jordy+-+Developer+%26+Netrunner" alt="Typing SVG"/>
 </a>
 
 <a href="https://linkedin.com/in/TU_USUARIO"><img src="https://img.shields.io/badge/LINKEDIN-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
@@ -32,7 +32,7 @@ Hola, soy **Jordy**, developer y netrunner desde Latinoamérica 🌎. Construyo 
 
 ### my perfect stack ✦
 
-<img src="https://skillicons.dev/icons?i=python,js,ts,react,nodejs,cpp,html,css,git,github,linux,bash,docker,postgres,vscode&theme=dark&perline=8" alt="Tech stack"/>
+<img src="https://skillicons.dev/icons?i=python,kotlin,ts,js,react,nodejs,html,css,git,github,linux,bash,docker,postgres,vscode&theme=dark&perline=8" alt="Tech stack"/>
 
 ---
 
