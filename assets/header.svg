@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="280" viewBox="0 0 1000 280">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05010f"/>
+      <stop offset="0.6" stop-color="#1a0536"/>
+      <stop offset="1" stop-color="#3b0a5c"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f9f002"/>
+      <stop offset="0.5" stop-color="#ff2a6d"/>
+      <stop offset="1" stop-color="#7a04eb"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="#000" opacity="0.25"/>
+    </pattern>
+    <clipPath id="sunclip">
+      <rect x="0" y="0" width="1000" height="88"/><rect x="0" y="96" width="1000" height="10"/>
+      <rect x="0" y="112" width="1000" height="8"/><rect x="0" y="125" width="1000" height="6"/>
+      <rect x="0" y="136" width="1000" height="4"/>
+    </clipPath>
+    <style>
+      .t{font-family:'Courier New',Consolas,monospace;font-weight:900;font-size:64px;letter-spacing:10px}
+      .sub{font-family:'Courier New',Consolas,monospace;font-weight:700;font-size:18px;letter-spacing:6px;fill:#05d9e8}
+      .jp{font-family:'MS Gothic','Noto Sans JP',sans-serif;font-size:16px;letter-spacing:8px;fill:#ff2a6d}
+      .gc{fill:#05d9e8;animation:gc 3s infinite steps(1)}
+      .gm{fill:#ff2a6d;animation:gm 3s infinite steps(1)}
+      .grid{animation:move 1.2s linear infinite}
+      .flick{animation:flick 4s infinite}
+      .blink{animation:blink 1s infinite steps(1)}
+      @keyframes gc{0%,88%,100%{transform:translate(-3px,0)}90%{transform:translate(-14px,3px)}93%{transform:translate(9px,-2px)}96%{transform:translate(-6px,0)}}
+      @keyframes gm{0%,88%,100%{transform:translate(3px,0)}90%{transform:translate(12px,-3px)}93%{transform:translate(-10px,2px)}96%{transform:translate(5px,0)}}
+      @keyframes move{from{transform:translateY(0)}to{transform:translateY(20px)}}
+      @keyframes flick{0%,19%,22%,62%,64%,100%{opacity:1}20%,63%{opacity:.35}}
+      @keyframes blink{50%{opacity:0}}
+    </style>
+  </defs>
+
+  <rect width="1000" height="280" fill="url(#sky)"/>
+
+  <!-- stars -->
+  <g fill="#d1f7ff" opacity="0.7">
+    <circle cx="60" cy="30" r="1"/><circle cx="140" cy="70" r="1.2"/><circle cx="230" cy="20" r="0.8"/>
+    <circle cx="330" cy="55" r="1"/><circle cx="690" cy="25" r="1.1"/><circle cx="780" cy="65" r="0.9"/>
+    <circle cx="880" cy="35" r="1.2"/><circle cx="950" cy="80" r="0.8"/><circle cx="420" cy="15" r="0.9"/>
+  </g>
+
+  <!-- synthwave sun -->
+  <circle cx="500" cy="150" r="80" fill="url(#sun)" clip-path="url(#sunclip)" opacity="0.85"/>
+
+  <!-- city skyline -->
+  <g fill="#0a0118">
+    <rect x="0" y="120" width="40" height="60"/><rect x="45" y="95" width="30" height="85"/><rect x="80" y="130" width="50" height="50"/>
+    <rect x="135" y="80" width="25" height="100"/><rect x="165" y="110" width="45" height="70"/><rect x="215" y="135" width="35" height="45"/>
+    <rect x="255" y="100" width="28" height="80"/><rect x="290" y="125" width="60" height="55"/>
+    <rect x="650" y="125" width="55" height="55"/><rect x="710" y="90" width="30" height="90"/><rect x="745" y="115" width="45" height="65"/>
+    <rect x="795" y="75" width="22" height="105"/><rect x="822" y="120" width="50" height="60"/><rect x="877" y="100" width="35" height="80"/>
+    <rect x="917" y="130" width="40" height="50"/><rect x="960" y="105" width="40" height="75"/>
+  </g>
+  <g fill="#ff2a6d" class="flick">
+    <rect x="52" y="105" width="4" height="4"/><rect x="62" y="125" width="4" height="4"/><rect x="142" y="95" width="4" height="4"/>
+    <rect x="262" y="115" width="4" height="4"/><rect x="718" y="105" width="4" height="4"/><rect x="800" y="90" width="4" height="4"/>
+  </g>
+  <g fill="#05d9e8">
+    <rect x="148" y="120" width="4" height="4"/><rect x="180" y="125" width="4" height="4"/><rect x="300" y="140" width="4" height="4"/>
+    <rect x="730" y="130" width="4" height="4"/><rect x="885" y="115" width="4" height="4"/><rect x="970" y="120" width="4" height="4"/>
+  </g>
+
+  <!-- perspective grid floor -->
+  <rect y="180" width="1000" height="100" fill="#0d0221"/>
+  <line x1="0" y1="180" x2="1000" y2="180" stroke="#ff2a6d" stroke-width="2" filter="url(#glow)"/>
+  <svg x="0" y="180" width="1000" height="100" overflow="hidden">
+    <g stroke="#ff2a6d" stroke-width="1" opacity="0.7" class="grid">
+      <line x1="0" y1="-20" x2="1000" y2="-20"/><line x1="0" y1="0" x2="1000" y2="0"/>
+      <line x1="0" y1="20" x2="1000" y2="20"/><line x1="0" y1="40" x2="1000" y2="40"/>
+      <line x1="0" y1="60" x2="1000" y2="60"/><line x1="0" y1="80" x2="1000" y2="80"/>
+    </g>
+    <g stroke="#7a04eb" stroke-width="1.2">
+      <line x1="500" y1="0" x2="500" y2="100"/>
+      <line x1="500" y1="0" x2="380" y2="100"/><line x1="500" y1="0" x2="620" y2="100"/>
+      <line x1="500" y1="0" x2="250" y2="100"/><line x1="500" y1="0" x2="750" y2="100"/>
+      <line x1="500" y1="0" x2="100" y2="100"/><line x1="500" y1="0" x2="900" y2="100"/>
+      <line x1="500" y1="0" x2="-100" y2="100"/><line x1="500" y1="0" x2="1100" y2="100"/>
+      <line x1="500" y1="0" x2="-350" y2="100"/><line x1="500" y1="0" x2="1350" y2="100"/>
+    </g>
+  </svg>
+
+  <!-- glitch title -->
+  <g text-anchor="middle">
+    <text x="500" y="125" class="t gc" opacity="0.8">JORDY MARTEL</text>
+    <text x="500" y="125" class="t gm" opacity="0.8">JORDY MARTEL</text>
+    <text x="500" y="125" class="t" fill="#ffffff" filter="url(#glow)">JORDY MARTEL</text>
+    <text x="500" y="160" class="jp">サイバー開発者 // ハッカー</text>
+    <text x="500" y="230" class="sub">&gt; DEVELOPER :: NETRUNNER :: BUILDER<tspan class="blink">_</tspan></text>
+  </g>
+
+  <rect width="1000" height="280" fill="url(#scan)"/>
+  <rect x="1" y="1" width="998" height="278" fill="none" stroke="#05d9e8" stroke-width="2" opacity="0.6"/>
+</svg>
