@@ -40,7 +40,7 @@ query($login: String!, $cursor: String) {
   user(login: $login) {
     followers { totalCount }
     contributionsCollection {
-      contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } }
+      contributionCalendar { totalContributions weeks { contributionDays { date weekday contributionCount contributionLevel } } }
     }
     repositories(ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC, first: 100, after: $cursor) {
       totalCount
@@ -90,6 +90,11 @@ def fetch_graphql():
         cursor = repos["pageInfo"]["endCursor"]
     cal = u["contributionsCollection"]["contributionCalendar"]
     days = [d for w in cal["weeks"] for d in w["contributionDays"]]
+    stats["weeks"] = [
+        [{"date": d["date"], "weekday": d["weekday"], "count": d["contributionCount"], "level": d["contributionLevel"]}
+         for d in w["contributionDays"]]
+        for w in cal["weeks"]
+    ]
     stats["current"], stats["longest"] = streaks(days)
     stats.update(repos=repos["totalCount"], followers=u["followers"]["totalCount"], contribs=cal["totalContributions"])
     return stats
@@ -104,8 +109,82 @@ def fetch_rest():
             langs[name] = langs.get(name, 0) + size
     return {
         "stars": sum(r["stargazers_count"] for r in repos), "repos": u["public_repos"], "followers": u["followers"],
-        "contribs": None, "current": None, "longest": None, "langs": langs, "colors": {},
+        "contribs": None, "current": None, "longest": None, "langs": langs, "colors": {}, "weeks": None,
     }
+
+
+def fetch_projects():
+    """Repo details for the project cards listed in profile.config.json."""
+    out = []
+    for p in CFG.get("projects", []):
+        r = request(f"https://api.github.com/repos/{USER}/{p['repo']}")
+        out.append({
+            "name": r["name"], "description": r["description"] or p.get("description", ""),
+            "language": r["language"], "stars": r["stargazers_count"], "forks": r["forks_count"],
+            "tag": p.get("tag", ""),
+        })
+    return out
+
+
+def wrap(text, width):
+    lines, cur = [], ""
+    for word in text.split():
+        if len(cur) + len(word) + 1 > width and cur:
+            lines.append(cur)
+            cur = word
+        else:
+            cur = f"{cur} {word}".strip()
+    if cur:
+        lines.append(cur)
+    if len(lines) > 2:
+        lines = lines[:2]
+        lines[1] = lines[1][: width - 1].rstrip() + "…"
+    return lines
+
+
+LANG_COLORS = {"Python": "#3572A5", "Kotlin": "#A97BFF", "TypeScript": "#3178c6", "JavaScript": "#f1e05a",
+               "HTML": "#e34c26", "CSS": "#663399", "Java": "#b07219", "C++": "#f34b7d", "Shell": "#89e051"}
+
+
+def build_card(p, index):
+    W, H = 480, 140
+    desc = "".join(f'<text x="22" y="{70 + i * 17}" class="d">{escape(line)}</text>'
+                   for i, line in enumerate(wrap(p["description"] or "Sin descripción todavía.", 58)))
+    lang = ""
+    x = 22
+    if p["language"]:
+        lang = (f'<circle cx="{x + 5}" cy="{H - 26}" r="5" fill="{LANG_COLORS.get(p["language"], C["cyan"])}"/>'
+                f'<text x="{x + 16}" y="{H - 22}" class="f">{escape(p["language"])}</text>')
+        x += 30 + len(p["language"]) * 7.5
+    meta = (f'<text x="{x}" y="{H - 22}" class="f">★ {p["stars"]}</text>'
+            f'<text x="{x + 52}" y="{H - 22}" class="f">⑂ {p["forks"]}</text>')
+    tag = (f'<text x="{W - 22}" y="{H - 22}" class="t" text-anchor="end">{escape(p["tag"])}</text>' if p["tag"] else "")
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{escape(p["name"])}">
+<defs><style>
+  text{{font-family:{MONO};}}
+  .n{{font-size:15px;font-weight:800;fill:{C["cyan"]}}}
+  .idx{{font-size:10px;fill:{C["magenta"]};letter-spacing:1px}}
+  .d{{font-size:11.5px;fill:{C["label"]}}}
+  .f{{font-size:11px;fill:{C["label"]}}}
+  .t{{font-size:10px;font-weight:700;fill:{C["yellow"]};letter-spacing:1px}}
+  .pill{{font-size:9.5px;fill:{C["dim"]}}}
+  .scan{{animation:scan 5s linear infinite}}
+  @keyframes scan{{from{{transform:translateX(-80px)}}to{{transform:translateX({W + 80}px)}}}}
+</style>
+<linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="{C["cyan"]}" stop-opacity="0"/><stop offset=".5" stop-color="{C["cyan"]}" stop-opacity=".9"/><stop offset="1" stop-color="{C["cyan"]}" stop-opacity="0"/></linearGradient>
+<clipPath id="cc"><rect width="{W}" height="{H}" rx="10"/></clipPath>
+</defs>
+<rect x=".5" y=".5" width="{W - 1}" height="{H - 1}" rx="10" fill="{C["win"]}" stroke="{C["line"]}"/>
+<g clip-path="url(#cc)"><rect class="scan" x="0" y="0" width="80" height="2" fill="url(#sg)"/></g>
+<path d="M1 18V1H18M{W - 18} 1H{W - 1}V18M1 {H - 18}V{H - 1}H18M{W - 18} {H - 1}H{W - 1}V{H - 18}" fill="none" stroke="{C["cyan"]}" stroke-opacity=".6" stroke-width="1.5"/>
+<text x="22" y="26" class="idx">PROJECT_{index:02d}</text>
+<text x="22" y="46" class="n">{escape(p["name"])}</text>
+<rect x="{W - 72}" y="14" width="52" height="18" rx="9" fill="none" stroke="{C["line"]}"/>
+<text x="{W - 46}" y="27" class="pill" text-anchor="middle">Public</text>
+{desc}{lang}{meta}{tag}
+</svg>
+'''
+    (ROOT / "assets" / f"project-{p['name']}.svg").write_text(svg, encoding="utf-8")
 
 
 def human_bytes(n):
@@ -197,6 +276,12 @@ def build(s):
 
 
 if __name__ == "__main__":
+    import build_snake
+
     data = fetch_graphql() if TOKEN else fetch_rest()
     build(data)
-    print(json.dumps({k: v for k, v in data.items() if k not in ("langs", "colors")}))
+    if data["weeks"]:
+        build_snake.build(data["weeks"], data["contribs"])
+    for i, p in enumerate(fetch_projects(), 1):
+        build_card(p, i)
+    print(json.dumps({k: v for k, v in data.items() if k not in ("langs", "colors", "weeks")}))

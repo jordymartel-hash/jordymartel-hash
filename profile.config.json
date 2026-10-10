@@ -51,5 +51,17 @@
         ["HTML/CSS", 66]
       ]
     }
+  ],
+  "projects": [
+    {
+      "repo": "OMNICONVERT",
+      "description": "Conversor universal de archivos hecho en Python. Un comando, cualquier formato.",
+      "tag": "IN PROGRESS"
+    },
+    {
+      "repo": "PI_Equipo05",
+      "description": "Proyecto de Procesos de Innovación para Ingeniería I.",
+      "tag": "TEAM // UPCH"
+    }
   ]
 }

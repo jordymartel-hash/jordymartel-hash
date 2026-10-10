@@ -32,6 +32,13 @@
 
 <div align="center">
 
+### featured projects
+
+<a href="https://github.com/jordymartel-hash/OMNICONVERT"><img src="./assets/project-OMNICONVERT.svg" width="49%" alt="OMNICONVERT"/></a>
+<a href="https://github.com/jordymartel-hash/PI_Equipo05"><img src="./assets/project-PI_Equipo05.svg" width="49%" alt="PI_Equipo05"/></a>
+
+---
+
 ### my perfect stack ✦
 
 <img src="https://skillicons.dev/icons?i=python,kotlin,ts,js,react,nodejs,html,css,git,github,linux,bash,docker,postgres,vscode&theme=dark&perline=8" alt="Tech stack"/>
@@ -47,5 +54,11 @@
 ### Numbers matter? ohhh yes.
 
 <img src="./assets/stats.svg" width="100%" alt="GitHub stats"/>
+
+---
+
+### snake.exe
+
+<img src="./assets/snake.svg" width="100%" alt="Contribution grid eaten by a snake"/>
 
 </div>
