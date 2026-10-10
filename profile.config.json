@@ -1,0 +1,55 @@
+{
+  "username": "jordymartel-hash",
+  "window_title": "profile.sh — live",
+  "node": "UTC-5 · LATAM NODE",
+  "info": [
+    ["Subject", "Jordy Martel"],
+    ["Role", "Developer · Netrunner"],
+    ["Origin", "Latinoamérica"],
+    ["Education", "Autodidacta · Always learning"],
+    ["Status", "Building + Learning + Shipping"],
+    ["ToolChain", "VS Code · Git · Terminal"],
+    ["Core.Lang", "Python · JavaScript · C++"],
+    ["Core.Frontend", "React · HTML · CSS"],
+    ["Core.Backend", "Node.js · Python"],
+    ["Core.Database", "PostgreSQL · MongoDB"],
+    ["Core.Infra", "Docker · Linux · Vercel"],
+    ["Grid.Mail", "—"],
+    ["Grid.LinkedIn", "/in/TU_USUARIO"],
+    ["Grid.GitHub", "jordymartel-hash"],
+    ["Grid.X", "@TU_USUARIO"]
+  ],
+  "morph": {
+    "particles": 2200,
+    "initials": "JM",
+    "hold_seconds": 2.8,
+    "move_seconds": 1.4
+  },
+  "radars": [
+    {
+      "title": "SKILL RADAR",
+      "subtitle": "stack / nivel",
+      "axes": [
+        ["Frontend", 85],
+        ["Backend", 80],
+        ["DevOps", 68],
+        ["Security", 75],
+        ["Hardware", 62],
+        ["Design", 70],
+        ["AI / ML", 72]
+      ]
+    },
+    {
+      "title": "LANGUAGE SIGNAL",
+      "subtitle": "uso / commits",
+      "axes": [
+        ["Python", 90],
+        ["JavaScript", 85],
+        ["TypeScript", 70],
+        ["C++", 64],
+        ["Bash", 76],
+        ["SQL", 68]
+      ]
+    }
+  ]
+}

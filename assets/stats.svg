@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="384" viewBox="0 0 1000 384" role="img" aria-label="GitHub stats for jordymartel-hash">
+<defs>
+  <clipPath id="bar"><rect x="60" y="296" width="880" height="10" rx="5"/></clipPath>
+  <style>
+    text{font-family:ui-monospace,'JetBrains Mono','SF Mono',Menlo,Consolas,'Liberation Mono',monospace;}
+    .usr{font-size:14px;font-weight:700;fill:#00f0ff}
+    .meta{font-size:10.5px;fill:#5d6b85}
+    .num{font-size:30px;font-weight:800;fill:#e6f1ff}
+    .cap{font-size:11px;fill:#8a9bb8}
+    .hd{font-size:13px;font-weight:700;fill:#ff2a6d}
+    .sub{font-size:11px;fill:#00f0ff}
+    .ln{font-size:12px;fill:#e6f1ff}
+    .lb{font-size:11px;fill:#8a9bb8}
+    .lp{font-size:11px;fill:#fcee0a;font-weight:700}
+    .pop{opacity:0;animation:pop .5s ease-out forwards}
+    .fill{transform:scaleX(0);transform-origin:60px 0;animation:fill 1.4s .5s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    @keyframes fill{to{transform:scaleX(1)}}
+  </style>
+</defs>
+<rect x=".5" y=".5" width="999" height="383" rx="10" fill="#070b14" stroke="#1a2742"/>
+<text x="40" y="38" class="usr">jordymartel-hash</text>
+<text x="960" y="38" class="meta" text-anchor="end">at a glance · updated 2026-10-10 06:48 UTC</text>
+<line x1="40" y1="52" x2="960" y2="52" stroke="#1a2742"/>
+<g class="pop" style="animation-delay:0.10s"><text x="60" y="104" class="num">0</text><text x="60" y="124" class="cap">Total stars</text></g><g class="pop" style="animation-delay:0.18s"><text x="360" y="104" class="num">3</text><text x="360" y="124" class="cap">Public repos</text></g><g class="pop" style="animation-delay:0.26s"><text x="660" y="104" class="num">0</text><text x="660" y="124" class="cap">Followers</text></g><g class="pop" style="animation-delay:0.34s"><text x="60" y="178" class="num">—</text><text x="60" y="198" class="cap">Contributions (1y)</text></g><g class="pop" style="animation-delay:0.42s"><text x="360" y="178" class="num">—</text><text x="360" y="198" class="cap">Current streak</text></g><g class="pop" style="animation-delay:0.50s"><text x="660" y="178" class="num">—</text><text x="660" y="198" class="cap">Longest streak</text></g>
+<line x1="40" y1="216" x2="960" y2="216" stroke="#1a2742"/>
+<text x="40" y="248" class="hd">⌗ 1 Languages</text>
+<text x="500.0" y="278" class="sub" text-anchor="middle">Most used languages</text>
+<rect x="60" y="296" width="880" height="10" rx="5" fill="#1a2742"/>
+<g clip-path="url(#bar)"><g class="fill"><rect x="60.00" y="296" width="880.00" height="10" fill="#3572A5"/></g></g>
+<circle cx="65" cy="336" r="5" fill="#3572A5"/><text x="80" y="340" class="ln">Python</text><text x="360" y="340" class="lb" text-anchor="end">1 B</text><text x="450" y="340" class="lp" text-anchor="end">100.00%</text>
+</svg>

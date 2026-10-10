@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="400" viewBox="0 0 1000 400" role="img" aria-label="skill radar charts">
+<defs>
+  <filter id="sg" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <style>
+    text{font-family:ui-monospace,'JetBrains Mono','SF Mono',Menlo,Consolas,'Liberation Mono',monospace;}
+    .rt{font-size:12px;font-weight:700;fill:#00f0ff;letter-spacing:1.5px}
+    .rs{font-size:10px;fill:#5d6b85}
+    .ax{font-size:10.5px;fill:#8a9bb8}
+    .axv{font-size:9.5px;fill:#ff2a6d;font-weight:700}
+    .grow{transform:scale(0);animation:grow 1.1s cubic-bezier(.2,.9,.3,1.2) forwards}
+    .breathe{animation:breathe 3s ease-in-out infinite}
+    @keyframes grow{to{transform:scale(1)}}
+    @keyframes breathe{0%,100%{fill-opacity:.22}50%{fill-opacity:.4}}
+  </style>
+</defs>
+<rect width="1000" height="400" rx="10" fill="#070b14" stroke="#1a2742"/>
+<line x1="500.0" y1="20" x2="500.0" y2="380" stroke="#1a2742"/>
+
+<text x="250" y="52" text-anchor="middle" class="rt">SKILL RADAR</text>
+<text x="250" y="66" text-anchor="middle" class="rs">stack / nivel</text>
+<polygon points="250.0,196.2 272.5,207.1 278.0,231.4 262.5,250.9 237.5,250.9 222.0,231.4 227.5,207.1" fill="none" stroke="#1a2742" stroke-dasharray="3 4"/><polygon points="250.0,167.5 295.0,189.1 306.1,237.8 274.9,276.8 225.1,276.8 193.9,237.8 205.0,189.1" fill="none" stroke="#1a2742" stroke-dasharray="3 4"/><polygon points="250.0,138.8 317.4,171.2 334.1,244.2 287.4,302.7 212.6,302.7 165.9,244.2 182.6,171.2" fill="none" stroke="#1a2742" stroke-dasharray="3 4"/><polygon points="250.0,110.0 339.9,153.3 362.1,250.6 299.9,328.6 200.1,328.6 137.9,250.6 160.1,153.3" fill="none" stroke="#1a2742" /><line x1="250" y1="225" x2="250.0" y2="110.0" stroke="#1a2742"/><line x1="250" y1="225" x2="339.9" y2="153.3" stroke="#1a2742"/><line x1="250" y1="225" x2="362.1" y2="250.6" stroke="#1a2742"/><line x1="250" y1="225" x2="299.9" y2="328.6" stroke="#1a2742"/><line x1="250" y1="225" x2="200.1" y2="328.6" stroke="#1a2742"/><line x1="250" y1="225" x2="137.9" y2="250.6" stroke="#1a2742"/><line x1="250" y1="225" x2="160.1" y2="153.3" stroke="#1a2742"/>
+<g class="grow" style="transform-origin:250px 225px;animation-delay:0.2s">
+  <polygon points="250.0,127.2 321.9,167.6 326.2,242.4 287.4,302.7 219.1,289.2 171.5,242.9 185.3,173.4" fill="#ff2a6d" fill-opacity=".28" stroke="#00f0ff" stroke-width="2" filter="url(#sg)" class="breathe"/>
+  <circle cx="250.0" cy="127.2" r="3" fill="#00f0ff"/><circle cx="321.9" cy="167.6" r="3" fill="#00f0ff"/><circle cx="326.2" cy="242.4" r="3" fill="#00f0ff"/><circle cx="287.4" cy="302.7" r="3" fill="#00f0ff"/><circle cx="219.1" cy="289.2" r="3" fill="#00f0ff"/><circle cx="171.5" cy="242.9" r="3" fill="#00f0ff"/><circle cx="185.3" cy="173.4" r="3" fill="#00f0ff"/>
+</g>
+<text x="250.0" y="88.0" text-anchor="middle" class="ax">Frontend<tspan x="250.0" dy="12" class="axv">85</tspan></text><text x="357.1" y="139.6" text-anchor="start" class="ax">Backend<tspan x="357.1" dy="12" class="axv">80</tspan></text><text x="383.6" y="255.5" text-anchor="start" class="ax">DevOps<tspan x="383.6" dy="12" class="axv">68</tspan></text><text x="309.4" y="348.4" text-anchor="start" class="ax">Security<tspan x="309.4" dy="12" class="axv">75</tspan></text><text x="190.6" y="348.4" text-anchor="end" class="ax">Hardware<tspan x="190.6" dy="12" class="axv">62</tspan></text><text x="116.4" y="255.5" text-anchor="end" class="ax">Design<tspan x="116.4" dy="12" class="axv">70</tspan></text><text x="142.9" y="139.6" text-anchor="end" class="ax">AI / ML<tspan x="142.9" dy="12" class="axv">72</tspan></text>
+
+<text x="750" y="52" text-anchor="middle" class="rt">LANGUAGE SIGNAL</text>
+<text x="750" y="66" text-anchor="middle" class="rs">uso / commits</text>
+<polygon points="750.0,196.2 774.9,210.6 774.9,239.4 750.0,253.8 725.1,239.4 725.1,210.6" fill="none" stroke="#1a2742" stroke-dasharray="3 4"/><polygon points="750.0,167.5 799.8,196.2 799.8,253.8 750.0,282.5 700.2,253.8 700.2,196.2" fill="none" stroke="#1a2742" stroke-dasharray="3 4"/><polygon points="750.0,138.8 824.7,181.9 824.7,268.1 750.0,311.2 675.3,268.1 675.3,181.9" fill="none" stroke="#1a2742" stroke-dasharray="3 4"/><polygon points="750.0,110.0 849.6,167.5 849.6,282.5 750.0,340.0 650.4,282.5 650.4,167.5" fill="none" stroke="#1a2742" /><line x1="750" y1="225" x2="750.0" y2="110.0" stroke="#1a2742"/><line x1="750" y1="225" x2="849.6" y2="167.5" stroke="#1a2742"/><line x1="750" y1="225" x2="849.6" y2="282.5" stroke="#1a2742"/><line x1="750" y1="225" x2="750.0" y2="340.0" stroke="#1a2742"/><line x1="750" y1="225" x2="650.4" y2="282.5" stroke="#1a2742"/><line x1="750" y1="225" x2="650.4" y2="167.5" stroke="#1a2742"/>
+<g class="grow" style="transform-origin:750px 225px;animation-delay:0.5s">
+  <polygon points="750.0,121.5 834.7,176.1 819.7,265.2 750.0,298.6 674.3,268.7 682.3,185.9" fill="#ff2a6d" fill-opacity=".28" stroke="#00f0ff" stroke-width="2" filter="url(#sg)" class="breathe"/>
+  <circle cx="750.0" cy="121.5" r="3" fill="#00f0ff"/><circle cx="834.7" cy="176.1" r="3" fill="#00f0ff"/><circle cx="819.7" cy="265.2" r="3" fill="#00f0ff"/><circle cx="750.0" cy="298.6" r="3" fill="#00f0ff"/><circle cx="674.3" cy="268.7" r="3" fill="#00f0ff"/><circle cx="682.3" cy="185.9" r="3" fill="#00f0ff"/>
+</g>
+<text x="750.0" y="88.0" text-anchor="middle" class="ax">Python<tspan x="750.0" dy="12" class="axv">90</tspan></text><text x="868.6" y="156.5" text-anchor="start" class="ax">JavaScript<tspan x="868.6" dy="12" class="axv">85</tspan></text><text x="868.6" y="293.5" text-anchor="start" class="ax">TypeScript<tspan x="868.6" dy="12" class="axv">70</tspan></text><text x="750.0" y="362.0" text-anchor="middle" class="ax">C++<tspan x="750.0" dy="12" class="axv">64</tspan></text><text x="631.4" y="293.5" text-anchor="end" class="ax">Bash<tspan x="631.4" dy="12" class="axv">76</tspan></text><text x="631.4" y="156.5" text-anchor="end" class="ax">SQL<tspan x="631.4" dy="12" class="axv">68</tspan></text>
+</svg>
