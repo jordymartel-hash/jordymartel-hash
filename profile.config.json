@@ -54,6 +54,16 @@
   ],
   "projects": [
     {
+      "repo": "VERIDIA",
+      "description": "Nuevo proyecto en Python, en desarrollo activo. 🚧",
+      "tag": "NEW // 2026"
+    },
+    {
+      "repo": "SORANE",
+      "description": "Sorane: asistente de escritorio para Windows.",
+      "tag": "DESKTOP // AI"
+    },
+    {
       "repo": "OMNICONVERT",
       "description": "Conversor universal de archivos hecho en Python. Un comando, cualquier formato.",
       "tag": "IN PROGRESS"

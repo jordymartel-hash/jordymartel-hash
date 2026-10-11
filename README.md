@@ -23,6 +23,7 @@
 
 - 🤖 **Obsesionado con:** IA aplicada, agentes y automatización. Si se repite dos veces, se automatiza.
 - ⚡ **Construyendo:** [OMNICONVERT](https://github.com/jordymartel-hash/OMNICONVERT), un conversor universal hecho en Python.
+- 🖥️ **Creando:** [SORANE](https://github.com/jordymartel-hash/SORANE), un asistente de escritorio para Windows, y mi nuevo proyecto [VERIDIA](https://github.com/jordymartel-hash/VERIDIA).
 - 🧪 **Innovando:** con mi equipo en [PI_Equipo05](https://github.com/jordymartel-hash/PI_Equipo05), un proyecto de Procesos de Innovación.
 - 🎓 **Aprendiendo:** cada día algo nuevo. Este es solo el comienzo de mi carrera.
 - 🌎 **Mi misión:** usar la tecnología para **servir a la sociedad** y crear soluciones con impacto real.
@@ -33,6 +34,9 @@
 <div align="center">
 
 ### featured projects
+
+<a href="https://github.com/jordymartel-hash/VERIDIA"><img src="./assets/project-VERIDIA.svg" width="49%" alt="VERIDIA"/></a>
+<a href="https://github.com/jordymartel-hash/SORANE"><img src="./assets/project-SORANE.svg" width="49%" alt="SORANE"/></a>
 
 <a href="https://github.com/jordymartel-hash/OMNICONVERT"><img src="./assets/project-OMNICONVERT.svg" width="49%" alt="OMNICONVERT"/></a>
 <a href="https://github.com/jordymartel-hash/PI_Equipo05"><img src="./assets/project-PI_Equipo05.svg" width="49%" alt="PI_Equipo05"/></a>

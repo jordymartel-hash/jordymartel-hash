@@ -16,7 +16,7 @@
 <rect x=".5" y=".5" width="479" height="139" rx="10" fill="#070b14" stroke="#1a2742"/>
 <g clip-path="url(#cc)"><rect class="scan" x="0" y="0" width="80" height="2" fill="url(#sg)"/></g>
 <path d="M1 18V1H18M462 1H479V18M1 122V139H18M462 139H479V122" fill="none" stroke="#00f0ff" stroke-opacity=".6" stroke-width="1.5"/>
-<text x="22" y="26" class="idx">PROJECT_02</text>
+<text x="22" y="26" class="idx">PROJECT_04</text>
 <text x="22" y="46" class="n">PI_Equipo05</text>
 <rect x="408" y="14" width="52" height="18" rx="9" fill="none" stroke="#1a2742"/>
 <text x="434" y="27" class="pill" text-anchor="middle">Public</text>
